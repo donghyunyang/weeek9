@@ -1,37 +1,32 @@
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
-#include <time.h>
 using namespace std;
-
+int numm1 = 0, numm2 = 0, row1 = 0, col1 = 0;
 class VectorND
 {
 public:
-	int x_[5];
-	int i = 0;
-	int num = 0;
+	int *x_;
 	VectorND()
 	{
-		for (int i = 0;i < 5;i++)
-		{
-			x_[i] = 0;
-		}
+		if (numm1>0)
+			x_ = new int[numm1];
 	}
-	VectorND(int num2)
+	VectorND(const int& num2)
 	{
-		num = num2;
-		////x_ = new int[num];
-		//for (int i = 0;i < 5;i++)
-		//{
-		//	x_[i] = 1;
-		//}
+		numm1 = num2;
+		x_ = new int[numm1];
+		for (int i = 0;i < numm1;i++)
+		{
+			x_[i] = rand() % 10 + 1;
+
+		}
 	}
 	int operator*(const VectorND& input)//dot product
 	{
 		int ans;
-
 		ans = this->x_[0] * input.x_[0];
-		for (int i = 0;i < 5 ;i++)
+		for (int i = 1;i < col1;i++)
 		{
 			ans += this->x_[i] * input.x_[i];
 		}
@@ -44,7 +39,7 @@ public:
 	{
 		VectorND vec;
 
-		for (int i = 0;i < 5;i++)
+		for (int i = 0;i < numm1;i++)
 		{
 			vec.x_[i] = this->x_[i] + input.x_[i];
 		}
@@ -56,62 +51,68 @@ public:
 class Matrix3x3
 {
 public:
-	int row0,col0;
-	VectorND mat[5];
+	int row0, col0;
+	VectorND *mat;
+
 	Matrix3x3(const int _r0, const int _C0)
 	{
-		row0 = _r0;
-		col0 = _C0;
-		//mat = new VectorND[col0];
-		for (int i=0;i < _r0;i++)
-		{
-			for (int j = 0;j <  _r0;j++)
-			{
-				mat[i].x_[j] = rand() % (j+1)+1;
-			}
-		}
+		row1 = row0 = _r0;
+		col1 = col0 = _C0;
+		mat = new VectorND[row0];
 
+		for (int i = 0;i < row0;i++)
+		{
+			VectorND q(col0);
+
+			mat[i] = q;
+
+		}
 	}
-	
+
 	VectorND operator*(const VectorND& rhs)//multiplication of matrix 3x3 and vector3D
 	{
-		VectorND ans[5] = { 0, };
-		//ans = new VectorND[col0];
-		for (int i = 0;i<4;i++)
+		VectorND ans(row1);
+
+		for (int j = 0;j < row1;j++)
 		{
-			for (int j = 0;j < 5;j++)
-			{
-				ans[i].x_[j] = mat[i].x_[j] * rhs.x_[j];
-
-			}
+			ans.x_[j] = mat[j] * rhs;
 		}
-
-		return *ans;
-
+		for (int i = 0; i< row1; i++)
+			return ans;
 	}
 };
-ostream& operator<<(ostream& os, const Matrix3x3& vec)
+ostream& operator<<(ostream& os, const VectorND& vec)
 {
-	
-	for (int i = 0;i < 4;i++)
+	for (int i = 0;i < numm1;i++)
 	{
-		for (int j = 0;j < 5;j++)
-		{
-			os << vec.mat[i].x_[i] << " ";
-		}
-		cout << endl;
+		os << "\t\t" << vec.x_[i] << " " << endl;
 	}
 	return os;
 }
 
 int main()
 {
-	srand((unsigned)time(NULL));
 	Matrix3x3 m(5, 4);
 
-	VectorND v(5);
+	VectorND v(4);
+	printf("\t"); printf("%d x %d Matrix", row1, col1);printf("\t");
+	printf("Vector");
+	puts("");puts("");
+	for (int i = 0;i<m.row0;i++)
+	{
+		printf("\t");
+		for (int j = 0;j < m.col0;j++)
+		{
+			printf("%2d ", m.mat[i].x_[j]);
+		}
+		if (i<m.row0 - 1)
+			printf("\t  %d", v.x_[i]);
+		puts("");
+	}
+	VectorND y = m * v;
+	puts("");
+	printf("\t      answer");
+	puts("");
+	cout << y << endl;
 
-	VectorND y = m * y;
-	cout << m<< endl;
-	//cout << y << endl;
 }
