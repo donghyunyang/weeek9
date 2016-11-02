@@ -1,0 +1,8 @@
+﻿  소스.cpp
+c:\users\yang\documents\visual studio 2015\projects\vector3d\vector3d\소스.cpp(61): error C2059: 구문 오류: '('
+c:\users\yang\documents\visual studio 2015\projects\vector3d\vector3d\소스.cpp(61): error C3646: 'time': 알 수 없는 재정의 지정자입니다.
+c:\users\yang\documents\visual studio 2015\projects\vector3d\vector3d\소스.cpp(61): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+c:\users\yang\documents\visual studio 2015\projects\vector3d\vector3d\소스.cpp(61): warning C4183: 'srand': 반환 형식이 없습니다. 'int'를 반환하는 멤버 함수로 간주됩니다.
+c:\users\yang\documents\visual studio 2015\projects\vector3d\vector3d\소스.cpp(93): error C2143: 구문 오류: ')'이(가) ';' 앞에 없습니다.
+c:\users\yang\documents\visual studio 2015\projects\vector3d\vector3d\소스.cpp(93): error C2143: 구문 오류: ';'이(가) ')' 앞에 없습니다.
+c:\users\yang\documents\visual studio 2015\projects\vector3d\vector3d\소스.cpp(93): error C2059: 구문 오류: ')'
